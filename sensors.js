@@ -7,7 +7,12 @@ class Sensors {
         this.sensors = [];
     }
     
-
+    /**
+     * добавляем сенсор в массив
+     *
+     * @param {string} id ид сенсора в виде sensors/0XBNA/enable' где 0XBNA название группы а enable название сенсора 
+     * @param {string} value занчение сенсора по которому мы узнаем тип сенсора
+     */
     addSensor(id, value) {
         const sensorType = this.getSensorType(value)
         const SensorIsCritical = this.isCritical(value)
@@ -27,17 +32,25 @@ class Sensors {
             selector:id.replace(/\//g, '-')
         })
     }
-
+    /**
+     * обновляем данные сенсора в массиве
+     *
+     * @param {integer} index мндекс сенсора в массиве
+     * @param {string} value новое занчение сенсора которое нужно вставить
+     */
     updateSensorValueByIndex(index, sensorValue){
         console.log(this.groups.getAllGroup())
         var SensorIsCritical = this.isCritical(sensorValue)
         this.groups.updateGroup(this.sensors[index].group.toUpperCase(), SensorIsCritical, this.sensors[index].id)
         this.sensors[index].value = sensorValue
-        this.sensors[index].SensorIsCritical = SensorIsCritical;
-            
-           
+        this.sensors[index].SensorIsCritical = SensorIsCritical; 
     }    
-
+    /**
+     * измееняем имя сенсора в массиве
+     *
+     * @param {string} sensorId ид сенсора 
+     * @param {string} sensorName новое имя сенсора которое нужно вставить
+     */
     changeSensorName(sensorId, sensorName){
         let sensor = this.sensors.find(sensor => sensor.id === sensorId);
         if (sensor) {
@@ -47,15 +60,27 @@ class Sensors {
             return false
         }
     }
-    
+    /**
+     * получеаем все сенсоре в массиве
+     *
+     * @return {array} senros массив внутри которого ассосиотивный массив 
+     */
     getAllSensors(){
         return this.sensors;
     }
-
+    /**
+     * получеаем индекс сенсора в массиве
+     * @param {string} sensorId ид масива по которому мы будем искать
+     * @return {integer} index индекс массива
+     */
     getSensorIndex(sensorId){
         return this.sensors.findIndex(sensor => sensor.id === sensorId);
     }
-
+    /**
+     * смотритм стали ли занчение сенсоров критическими 
+     * @param {string} value значение сенсора в конце которого написано Lux, F, C или V если нет то возвращяем false
+     * @return {bool} если true то значение сенсоа критическое 
+     */
     isCritical(value){
         var intValue = parseInt(value)
         if (isNaN(intValue)) {
@@ -71,7 +96,11 @@ class Sensors {
         }
         return false
     }
-
+    /**
+     * смотритм стали ли занчение сенсоров критическими 
+     * @param {string} value значение сенсора в конце которого написано Lux, F, C, V или если что то другое то смотрим что
+     * @return {object} асосиотивный массив виде name: тип сенсора, img:ссылка на изображение
+     */
     getSensorType(value) {
         // console.log(value)
         if (isNaN(parseInt(value))) {
