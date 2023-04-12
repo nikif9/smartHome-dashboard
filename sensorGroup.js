@@ -81,13 +81,13 @@ class SensorGroup {
      * получаем группу из массива
      *
      * @param {string} groupName назавние группы которе ишьем 
-     * @return {object} group асесотивный массив с данными name: это название группы status: on или off  criticalSenors: массив с ид критических сенсоров
+     * @return {object} group ассоциативный массив с данными name: это название группы status: on или off  criticalSenors: массив с ид критических сенсоров
      */
     getGroup(groupName){
         return this.groups.find(group => group.name === groupName);
     }
      /** 
-     * @return {object} group асесотивный массив с данными name: это название группы status: on или off  criticalSenors: массив с ид критических сенсоров
+     * @return {object} group ассоциативный массив с данными name: это название группы status: on или off  criticalSenors: массив с ид критических сенсоров
      */
     getAllGroup(){
         return this.groups;

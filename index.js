@@ -14,7 +14,7 @@ const brokerUrl = 'mqtt://185.185.68.206:1883'
 const client = mqtt.connect(brokerUrl)
 app.use(express.static(__dirname + '/public'));
 
-// подключение к mqtt брокеру и подисаться на все топики
+// подключение к mqtt брокеру и подписаться на все топики
 client.on('connect', function () {
     console.log('connected to broker');
     client.subscribe('#');

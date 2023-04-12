@@ -11,7 +11,7 @@ class Sensors {
      * добавляем сенсор в массив
      *
      * @param {string} id ид сенсора в виде sensors/0XBNA/enable' где 0XBNA название группы а enable название сенсора 
-     * @param {string} value занчение сенсора по которому мы узнаем тип сенсора
+     * @param {string} value значение сенсора по которому мы узнаем тип сенсора
      */
     addSensor(id, value) {
         const sensorType = this.getSensorType(value)
@@ -35,8 +35,8 @@ class Sensors {
     /**
      * обновляем данные сенсора в массиве
      *
-     * @param {integer} index мндекс сенсора в массиве
-     * @param {string} value новое занчение сенсора которое нужно вставить
+     * @param {integer} index индекс сенсора в массиве
+     * @param {string} value новое значение сенсора которое нужно вставить
      */
     updateSensorValueByIndex(index, sensorValue){
         console.log(this.groups.getAllGroup())
@@ -46,7 +46,7 @@ class Sensors {
         this.sensors[index].SensorIsCritical = SensorIsCritical; 
     }    
     /**
-     * измееняем имя сенсора в массиве
+     * изменить имя сенсора в массиве
      *
      * @param {string} sensorId ид сенсора 
      * @param {string} sensorName новое имя сенсора которое нужно вставить
@@ -61,9 +61,9 @@ class Sensors {
         }
     }
     /**
-     * получеаем все сенсоре в массиве
+     * получеаем все сенсоры в массиве
      *
-     * @return {array} senros массив внутри которого ассосиотивный массив 
+     * @return {array} senros массив внутри которого ассоциативный массив
      */
     getAllSensors(){
         return this.sensors;
@@ -99,7 +99,7 @@ class Sensors {
     /**
      * смотритм стали ли занчение сенсоров критическими 
      * @param {string} value значение сенсора в конце которого написано Lux, F, C, V или если что то другое то смотрим что
-     * @return {object} асосиотивный массив виде name: тип сенсора, img:ссылка на изображение
+     * @return {object} ассоциативный массив виде name: тип сенсора, img:ссылка на изображение
      */
     getSensorType(value) {
         // console.log(value)
