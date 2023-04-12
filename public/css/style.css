@@ -1,0 +1,175 @@
+
+body{
+    font-family: "Arial", Times, serif; 
+    margin: 0;
+}
+h1{
+    text-align: center;
+}
+#sensors {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    flex-direction: column;
+    /* max-width: 800px; */
+    margin: 0 auto;
+}
+.tile-group {
+    margin-bottom: 20px;
+    background: #a3a3a3;
+}
+
+.group {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    color: white;
+}
+
+.tiles {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+    padding-bottom: 20px;
+}
+
+.tile {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 150px;
+    background-color: #3aeb7f;
+    border: 5px solid #3aeb7f;
+    padding: 10px;
+    margin: 0 10px 10px 0;
+    border-radius: 10px;
+    position: relative;
+}
+
+.icon {
+    width: 60px;
+}
+
+.name {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.type {
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+
+.value {
+    font-size: 25px;
+}
+
+.rename-btn {
+    /* position: absolute; */
+    /* bottom: 10px;
+    right: 10px; */
+    font-size: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.rename-btn:hover {
+    background-color: #0069d9;
+}
+
+@media only screen and (max-width: 992px){
+    h1{
+        font-size: 55px;
+    }
+    body{
+        font-family: "Arial", Times, serif; 
+        background-color: rgb(255, 255, 255);
+        margin: 0;
+    }
+    #sensors {
+        display: flex;
+        /* flex-wrap: wrap; */
+        justify-content: center;
+        flex-direction: column;
+        /* max-width: 800px; */
+        margin: 0 auto;
+    }
+    .tile-group {
+        margin-bottom: 50px;
+        background: #a3a3a3;
+    }
+    
+    .group {
+        text-align: center;
+        font-size: 55px;
+        font-weight: bold;
+        margin: 0 0 10px;
+        color: white;
+    }
+    
+    .tiles {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 10px;
+        padding-bottom:55px;
+    }
+    
+    .tile {
+        min-height: 400px;
+        min-width: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1 0 150px;
+        background-color: #3aeb7f;
+        border: 5px solid #3aeb7f;
+        padding: 10px;
+        margin: 0 10px 10px 0;
+        border-radius: 10px;
+        position: relative;
+        
+    }
+    
+    .icon {
+        width: 140px;
+    }
+    
+    .name {
+        font-size: 55px;
+    }
+    
+    .type {
+        font-size:  55px;
+    }
+    
+    .value {
+        font-size: 55px;
+    }
+    
+    .rename-btn {
+        /* position: absolute; */
+        /* bottom: 10px;
+        right: 10px; */
+        font-size: 35px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        width: 100%;
+    }
+    
+    .rename-btn:hover {
+        background-color: #0069d9;
+    }
+}
