@@ -6,7 +6,7 @@ class Sensors {
         this.groups = new SensorGroup();
         this.sensors = [];
     }
-    
+
     /**
      * добавляем сенсор в массив
      *
@@ -18,18 +18,18 @@ class Sensors {
         const SensorIsCritical = this.isCritical(value)
         const groupName = id.split('/')[1]
         if (this.groups.getGroup(groupName)) {
-            this.groups.updateGroup(groupName, SensorIsCritical,id)
-        }else{
-            this.groups.addNewGroup(groupName, SensorIsCritical,id)
+            this.groups.updateGroup(groupName, SensorIsCritical, id)
+        } else {
+            this.groups.addNewGroup(groupName, SensorIsCritical, id)
         }
         this.sensors.push({
-            id:id, 
-            name:id.split('/').pop(), 
-            value: value, 
-            group: groupName.toLowerCase(), 
-            sensorType:sensorType, 
+            id: id,
+            name: id.split('/').pop(),
+            value: value,
+            group: groupName.toLowerCase(),
+            sensorType: sensorType,
             SensorIsCritical: SensorIsCritical,
-            selector:id.replace(/\//g, '-')
+            selector: id.replace(/\//g, '-')
         })
     }
     /**
@@ -38,25 +38,25 @@ class Sensors {
      * @param {integer} index индекс сенсора в массиве
      * @param {string} value новое значение сенсора которое нужно вставить
      */
-    updateSensorValueByIndex(index, sensorValue){
+    updateSensorValueByIndex(index, sensorValue) {
         console.log(this.groups.getAllGroup())
         var SensorIsCritical = this.isCritical(sensorValue)
         this.groups.updateGroup(this.sensors[index].group.toUpperCase(), SensorIsCritical, this.sensors[index].id)
         this.sensors[index].value = sensorValue
-        this.sensors[index].SensorIsCritical = SensorIsCritical; 
-    }    
+        this.sensors[index].SensorIsCritical = SensorIsCritical;
+    }
     /**
      * изменить имя сенсора в массиве
      *
      * @param {string} sensorId ид сенсора 
      * @param {string} sensorName новое имя сенсора которое нужно вставить
      */
-    changeSensorName(sensorId, sensorName){
+    changeSensorName(sensorId, sensorName) {
         let sensor = this.sensors.find(sensor => sensor.id === sensorId);
         if (sensor) {
             sensor.name = sensorName;
             return true
-        }else{
+        } else {
             return false
         }
     }
@@ -65,7 +65,7 @@ class Sensors {
      *
      * @return {array} senros массив внутри которого ассоциативный массив
      */
-    getAllSensors(){
+    getAllSensors() {
         return this.sensors;
     }
     /**
@@ -73,7 +73,7 @@ class Sensors {
      * @param {string} sensorId ид масива по которому мы будем искать
      * @return {integer} index индекс массива
      */
-    getSensorIndex(sensorId){
+    getSensorIndex(sensorId) {
         return this.sensors.findIndex(sensor => sensor.id === sensorId);
     }
     /**
@@ -81,15 +81,15 @@ class Sensors {
      * @param {string} value значение сенсора в конце которого написано Lux, F, C или V если нет то возвращяем false
      * @return {bool} если true то значение сенсоа критическое 
      */
-    isCritical(value){
+    isCritical(value) {
         var intValue = parseInt(value)
         if (isNaN(intValue)) {
             return false;
         }
-        
+
         if (value.endsWith('Lux') && intValue > 800) {
             return true
-        }else if ((value.endsWith('F') && (intValue-32)*5/9 > 50) || (value.endsWith('C') && intValue > 50)) {
+        } else if ((value.endsWith('F') && (intValue - 32) * 5 / 9 > 50) || (value.endsWith('C') && intValue > 50)) {
             return true
         } else if (value.endsWith('V') & intValue < 170) {
             return true
@@ -105,21 +105,21 @@ class Sensors {
         // console.log(value)
         if (isNaN(parseInt(value))) {
             if (value == 'off' || value == 'on') {
-                return {name:'switch', img:'img/power button.svg'}
-            }else if (value == 'closed' || value == 'open') {
-                return {name:'door', img:'img/door handle.svg'}
-            }else{
-                return {name:'undefined', img:'img/plug.svg'}
+                return { name: 'switch', img: 'img/power button.svg' }
+            } else if (value == 'closed' || value == 'open') {
+                return { name: 'door', img: 'img/door handle.svg' }
+            } else {
+                return { name: 'undefined', img: 'img/plug.svg' }
             }
-        }else{
+        } else {
             if (value.endsWith('Lux')) {
-                return {name:'lamp', img:'img/bulb.svg'}
-            }else if (value.endsWith('F') || value.endsWith('C')) {
-                return {name:'Temperature', img:'img/thermostat.svg'}
+                return { name: 'lamp', img: 'img/bulb.svg' }
+            } else if (value.endsWith('F') || value.endsWith('C')) {
+                return { name: 'Temperature', img: 'img/thermostat.svg' }
             } else if (value.endsWith('V')) {
-                return {name:'socket', img:'img/socket f.svg'}
-            }else{
-                return {name:'undefined', img:'img/plug.svg'}
+                return { name: 'socket', img: 'img/socket f.svg' }
+            } else {
+                return { name: 'undefined', img: 'img/plug.svg' }
             }
         }
     }

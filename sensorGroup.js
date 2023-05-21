@@ -2,18 +2,13 @@
  * класс для контроля на группой сенсоров если хоть у одного сенcора выходит критическое значение то отпрвавляем сообщение по socket io 
  * о том что нужно выключить группу а если все сенсоры стабильны то включаем группу обратон
 */
-const ioClient = require('socket.io-client');
+const SocketServer = require('./SocketServer');
+
 class SensorGroup {
     constructor() {
         this.groups = [];
+        this.socket = new SocketServer('http://185.185.68.206:3000');
 
-        this.socket = ioClient.connect('http://185.185.68.206:3000');
-        // console.log(this.socket)
-        this.socket.on('connect', () => {
-            console.log('Подключено к серверу');
-            // Здесь можно выполнить дополнительные действия, связанные с подключением
-            this.socket.emit('message', 'asd');
-        });
     }
     /**
      * добавляем группу в массив
@@ -75,7 +70,7 @@ class SensorGroup {
         var data = {"group": groupName, value: groupStatus}
         const jsonString = JSON.stringify(data);
         console.log(jsonString)
-        this.socket.emit('message', jsonString);
+        this.socket.sendMessage('message', jsonString);
     }
     /**
      * получаем группу из массива
@@ -92,7 +87,6 @@ class SensorGroup {
     getAllGroup(){
         return this.groups;
     }
-
 
 }
 
